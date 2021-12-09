@@ -1,0 +1,52 @@
+.register {
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #63a4ff;
+  justify-content: center;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+.registerTitle {
+  font-size: 50px;
+  color: white;
+}
+.registerForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.formLabel {
+  color: white;
+}
+.registerForm > label {
+  margin: 10px 0;
+}
+.registerInput {
+  padding: 10px;
+  border: 0;
+  outline: none;
+  border-radius: 6px;
+}
+
+.registerButton {
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #ee8e6b;
+  border-radius: 20px;
+  color: white;
+  background-image: linear-gradient(315deg, #ee8e6b 0%, #ef6da0 74%);
+}
+.registerLoginButton {
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #ee8e6b;
+  border-radius: 20px;
+  color: white;
+  background-image: linear-gradient(315deg, #ee8e6b 0%, #ef6da0 74%);
+}

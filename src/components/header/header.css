@@ -1,0 +1,35 @@
+.header {
+  margin-top: 60px;
+}
+.headerTitles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.headerTitleSm {
+  font-size: 30px;
+  font-style: italic;
+  position: absolute;
+  top: 35%;
+  color: white;
+}
+.headerTitleSm2 {
+  font-size: 30px;
+  font-style: italic;
+  position: absolute;
+  top: 39%;
+  color: white;
+}
+.headerTitleLg {
+  color: white;
+  font-size: 60px;
+  top: 18%;
+  position: absolute;
+}
+.headerImg {
+  width: 100%;
+
+  border-radius: 15px;
+  object-fit: cover;
+}
