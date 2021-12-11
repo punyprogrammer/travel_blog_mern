@@ -1,21 +1,22 @@
-# MetaSocial -A social media application made with React and Node
-## Project Link-[Link](https://amar-metasocial.netlify.app)
-## Currently supported features
-### 1) User Authentication using ContextAPI
-### 2) Users can upload images and captions
-### 3) Users can like posts 
-### 4) Users can follow other users
-## Features to be added 
-### 1) Chat functionality 
-### 2) Comment functionality
-### 3) Upload videos
-### 4) Search users,posts.
+# TravelBlog -A full stack application made with React ,Node.js,MongoBD and firebase(image uploads)
+## Project Link-[Link](https://amardeeps-travel-blog.netlify.app/)
+## Current Features
+### 1) User authentication 
+### 2)State management with ContextAPI 
+### 3) Users can write ,edit blog posts 
+### 4) Users can update their profile 
+### 5)Firebase image storage
 
-## 1)  Homepage
+## Features to be added
+### 1)Posts search functionality 
+### 2)Add tags to posts 
 
-![homepage](https://user-images.githubusercontent.com/83149058/145684742-77fc18b5-4988-4eca-b842-cb8f7c9c579a.PNG)
-## 2) Profile Page
-![profilepage](https://user-images.githubusercontent.com/83149058/145684825-43d77a4b-0c98-4dad-8832-0f7553ab514d.PNG)
-## 3) Login Page
+## Homepage 
 
-![loginpage](https://user-images.githubusercontent.com/83149058/145684844-be42549c-0b43-4b9e-a7c9-98be5546b35e.PNG)
+ ![homepageui](https://user-images.githubusercontent.com/83149058/145694607-14d0a038-b901-41b4-869c-e966a410954a.PNG)
+## Write posts
+
+![writepost](https://user-images.githubusercontent.com/83149058/145694632-4eb8d717-a2cb-470a-8876-0c131a4d3651.PNG)
+## Individual Posts
+
+![singlepost](https://user-images.githubusercontent.com/83149058/145694643-581e84ac-b892-4a68-842d-ee521f1395ec.PNG)
