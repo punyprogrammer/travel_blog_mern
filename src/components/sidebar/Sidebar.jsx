@@ -2,6 +2,12 @@ import "./sidebar.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    'Content-Type': 'multipart/form-data',
+  },
+};
 export default function Sidebar() {
   const [cats, setCats] = useState([]);
   useEffect(() => {

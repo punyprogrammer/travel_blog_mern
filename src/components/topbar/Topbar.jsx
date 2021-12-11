@@ -49,7 +49,7 @@ const Topbar = () => {
               className="topbarImg"
               src={
                 (user.profilePic &&
-                  `https://amar-blog.herokuapp.com/images/${user.profilePic}`) ||
+                  `${user.profilePic}`) ||
                 "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
               alt=""

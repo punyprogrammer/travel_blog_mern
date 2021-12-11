@@ -7,13 +7,7 @@ const Post = ({ post }) => {
   console.log(PF + post.photo);
   return (
     <div className="post">
-      {post.photo && (
-        <img
-          src={"https://amar-blog.herokuapp.com/images/" + post.photo}
-          alt=""
-          className="postImg"
-        />
-      )}
+      {post.photo && <img src={post.photo} alt="" className="postImg" />}
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((c) => (

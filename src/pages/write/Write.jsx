@@ -4,6 +4,7 @@ import "./write.css";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { projectStorage } from "../../firebaseConfig";
 
 const Write = () => {
   const [title, setTitle] = useState("");
@@ -11,26 +12,46 @@ const Write = () => {
   const [file, setFile] = useState(null);
   const [published, setPublished] = useState(false);
   const [newpost, setNewpost] = useState(null);
+  const [url, setUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const { user } = useContext(Context);
   const history = useLocation();
+  const handleUpload = (e) => {
+    e.preventDefault();
+    setUploading(true);
+    const fileName = file.name + Date.now();
+    const uploadTask = projectStorage.ref(`images/${fileName}`).put(file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        //progress function
+      },
+      (error) => {
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        projectStorage
+          .ref("images")
+          .child(fileName)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+            setUploading(false);
+          });
+      }
+    );
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
       title,
       desc,
       username: user.username,
+      photo: url,
     };
-    if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
-      newPost.photo = filename;
-      try {
-        await axios.post("https://amar-blog.herokuapp.com/api/upload", data);
-      } catch (error) {}
-    }
+
     try {
       const res = await axios.post(
         "https://amar-blog.herokuapp.com/api/posts",
@@ -50,6 +71,15 @@ const Write = () => {
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus-circle"></i>
+            {file && (
+              <button
+                className="uploadBtn"
+                disabled={uploading}
+                onClick={handleUpload}
+              >
+                {uploading ? "Uploading" : "Upload"}
+              </button>
+            )}
           </label>
           <input
             type="file"

@@ -20,10 +20,7 @@ const SinglePost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const res = await axios.get(
-        `https://amar-blog.herokuapp.com/api/posts/${path}`,
-        {
-          username: user.username,
-        }
+        `https://amar-blog.herokuapp.com/api/posts/${path}`
       );
       setPost(res.data);
       setTitle(res.data.title);
@@ -59,7 +56,7 @@ const SinglePost = () => {
     <div className="singlePost">
       <div className="singlePostWrapper">
         {post.photo && (
-          <img src={PF + post.photo} alt="" className="singlePostImg" />
+          <img src={post.photo} alt="" className="singlePostImg" />
         )}
         {updateMode ? (
           <input

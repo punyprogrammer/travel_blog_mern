@@ -51,3 +51,12 @@
   cursor: pointer;
   font-size: 15px;
 }
+.uploadBtn {
+  background-color: teal;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+}

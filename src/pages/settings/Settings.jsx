@@ -3,6 +3,8 @@ import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { Context } from "../../contexts/Context";
 import axios from "axios";
+import { projectStorage } from "../../firebaseConfig";
+import firebase from "firebase";
 const PF = "https://amar-blog.herokuapp.com/images/";
 const Settings = () => {
   const { user, dispatch } = useContext(Context);
@@ -10,6 +12,34 @@ const Settings = () => {
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
+  const [url, setUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const handleUpload = (e) => {
+    e.preventDefault();
+    setUploading(true);
+    const fileName = file.name + Date.now();
+    const uploadTask = projectStorage.ref(`images/${fileName}`).put(file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        //progress function
+      },
+      (error) => {
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        projectStorage
+          .ref("images")
+          .child(fileName)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+            setUploading(false);
+          });
+      }
+    );
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
@@ -18,17 +48,8 @@ const Settings = () => {
       username,
       email,
       password,
+      profilePic: url,
     };
-    if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
-      newUser.profilePic = filename;
-      try {
-        await axios.post("https://amar-blog.herokuapp.com/api/upload", data);
-      } catch (error) {}
-    }
     try {
       const res = await axios.put(
         "https://amar-blog.herokuapp.com/api/users/" + user._id,
@@ -51,7 +72,7 @@ const Settings = () => {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : `${PF}${user.profilePic}`}
+              src={file ? URL.createObjectURL(file) : `${user.profilePic}`}
             />
             <label htmlFor="fileInput">
               <i class="settingsPPIcon fas fa-user-circle"></i>
@@ -62,6 +83,11 @@ const Settings = () => {
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
+            {file && (
+              <button className="uploadButton" disabled={uploading} onClick={handleUpload}>
+                {uploading ? "Uploading" : "Upload"}
+              </button>
+            )}
           </div>
           <label>Username</label>
           <input
@@ -83,6 +109,7 @@ const Settings = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
           <button className="settingsSubmit" type="submit">
             Update
           </button>
